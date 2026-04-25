@@ -1,0 +1,55 @@
+-- with background
+
+-- Pull WezTerm API
+local wezterm = require("wezterm")
+local config = wezterm.config_builder()
+
+-- Import random wallpaper module
+local wallpaper = require("random_wallpaper")
+
+-- Use a random wallpaper from your wallpaper directory
+local random_bg = wallpaper.random_wallpaper()
+
+-- Base settings
+config.window_background_opacity = 0.95
+config.text_background_opacity = 0.95
+
+-- Background configuration (minimal)
+config.background = {
+	{
+		--csm
+		-- source = {
+		-- 	File = "/Users/ryan/.config/wallpapers/chainsaw-man-aki-hayakawa-hd-wallpaper-preview.jpg",
+		-- },
+		--gurren
+		--source = { File = "/Users/ryan/.config/wallpapers/54 - xdK6bRO.jpg" },
+		--simone
+		source = { File = "/Users/ryan/.config/wallpapers/1 - beJH98Y.jpg" },
+		--random
+		--source = { File = random_bg },
+		opacity = 1,
+		hsb = { brightness = 0.01 },
+	},
+	{
+		source = {
+			Gradient = {
+				colors = { "#1a1a1a", "#0f0f0f" },
+				orientation = { Linear = { angle = -45.0 } },
+			},
+		},
+		opacity = 1,
+	},
+}
+
+config.keys = {
+	{
+		key = "w",
+		mods = "CMD",
+		action = wezterm.action.CloseCurrentTab({ confirm = false }),
+	},
+}
+
+config.window_close_confirmation = "NeverPrompt"
+
+config.hide_tab_bar_if_only_one_tab = true
+return config
